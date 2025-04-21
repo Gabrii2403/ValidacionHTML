@@ -24,4 +24,5 @@ jobs:
 
       - name: Validate HTML
         run: npx html-validator-cli doc/index.html --output json
+          npx html-validator-cli --file doc/index.html --output json
 
