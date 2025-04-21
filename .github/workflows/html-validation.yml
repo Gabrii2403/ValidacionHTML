@@ -18,9 +18,10 @@ jobs:
         with:
           node-version: '14'  # O la versión que prefieras
 
-      - name: Install html-validator-cli
-        run: npm install -g html-validator-cli
+      - name: Install dependencies
+        run: |
+          npm install -g html-validator-cli
 
       - name: Validate HTML
-        run: html-validator-cli doc/index.html --output json
+        run: npx html-validator-cli doc/index.html --output json
 
