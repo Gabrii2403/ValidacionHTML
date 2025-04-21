@@ -1,0 +1,11 @@
+name: HTML Validation
+on: [push]
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install validator
+      run: sudo apt-get install -y validator
+    - name: Validate HTML5
+      run: validator --file doc/*.html --level 1
