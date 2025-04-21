@@ -1,11 +1,26 @@
 name: HTML Validation
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  validate-html:
+  validate:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Install validator
-      run: sudo apt-get install -y validator
-    - name: Validate HTML5
-      run: validator --file doc/*.html --level 1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # O la versión que prefieras
+
+      - name: Install html-validator-cli
+        run: npm install -g html-validator-cli
+
+      - name: Validate HTML
+        run: html-validator-cli doc/index.html --output json
+
